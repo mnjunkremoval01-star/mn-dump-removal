@@ -3,6 +3,35 @@
 Not rendered on the site. Tracks business-policy and infrastructure
 decisions still pending client confirmation before full commercial launch.
 
+## Temporary launch status
+
+```
+TEMPORARY_LIVE_WEBSITE=YES
+CURRENT_PUBLIC_URL=https://aa-dump-removal.vercel.app
+CUSTOM_DOMAIN=PENDING
+PHONE_LEAD_GENERATION=ACTIVE
+ONLINE_EMAIL_NOTIFICATION=PENDING
+```
+
+Live and usable as the client's real, temporary website today — phone
+CTAs work, the quote form correctly persists every lead to Supabase, and
+nothing pretends a deferred system is active. **Do not describe this as
+a fully completed lead-generation system** until online email
+notification (Resend) is activated; until then, phone is the only
+channel guaranteed to reach the business immediately, though every web
+submission is safely stored and recoverable in the meantime.
+
+## Post-launch upgrades (in priority order)
+
+1. **Custom domain** (`mnjunkremoval.com`, pending owner purchase) —
+   procedure in `DOMAIN_CUTOVER.md`. Unlocks a branded email sender and
+   permanent Search Console / Bing verification.
+2. **Live email notification** (Resend, deferred) — checklist in
+   `RESEND_SETUP.md`. Until active, leads only surface by checking the
+   Supabase `leads` table directly.
+3. **Analytics** (GA4, deferred) — scaffold ready, zero footprint until a
+   measurement ID is provided. Attribution is incomplete until then.
+
 ## Analytics — deferred
 
 `NEXT_PUBLIC_GA_MEASUREMENT_ID` is unset. `src/lib/analytics.ts` and
@@ -59,17 +88,9 @@ identity. Swap-ready: every logo slot (`Header`, `Hero`, `Footer`, favicon,
 OG image) accepts a real designed logo with no layout rework once one
 exists.
 
-## Client preview status
+## Lead recovery in the meantime
 
-```
-CURRENT_PREVIEW_URL=https://aa-dump-removal.vercel.app
-FINAL_DOMAIN=PENDING_PURCHASE
-LIVE_EMAIL_NOTIFICATION=PENDING_RESEND
-LEAD_DATABASE_PERSISTENCE=ACTIVE
-GA4=CLIENT_APPROVED_DEFERRED
-LEGAL_NAME=UNCONFIRMED
-```
-
-Suitable for design/UX approval. **Not** the final production handoff —
-say so explicitly whenever this URL is shared with the client, so it
-isn't mistaken for the finished deliverable.
+While email notification is pending, leads must be checked manually in
+Supabase (`leads` table, project `hiobelokxdsvlwpfuzat`) rather than an
+inbox. Whoever owns lead follow-up should know to check this until
+Resend is activated — otherwise submitted quotes could sit unseen.
