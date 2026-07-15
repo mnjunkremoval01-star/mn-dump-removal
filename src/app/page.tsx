@@ -11,15 +11,15 @@ import { Faq } from "@/components/home/Faq";
 import { FinalCta } from "@/components/home/FinalCta";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 
-const title = "Junk Removal in Burnsville, MN";
+const title = "Junk Removal in Burnsville, MN | MN Junk Removal";
 const description =
   "MN Junk Removal provides residential and commercial junk removal, cleanouts, furniture hauling, appliance removal, and debris removal in Burnsville and nearby Minnesota communities. Call (612) 267-9701 for an estimate.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
   alternates: { canonical: "/" },
-  openGraph: { title: `${title} | MN Junk Removal`, description, url: "/" },
+  openGraph: { title, description, url: "/" },
 };
 
 export default function Home() {
