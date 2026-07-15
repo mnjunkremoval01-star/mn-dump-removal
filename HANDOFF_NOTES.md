@@ -22,19 +22,54 @@ under an unverified legal entity. Once confirmed, set `legalName` and add
 the appropriate DBA disclosure to the Privacy Policy / Terms footer only —
 do not surface it elsewhere on marketing pages.
 
-## Custom domain — deferred ("keep as is")
+## Custom domain — preferred, awaiting owner purchase
 
-Site remains on `https://aa-dump-removal.vercel.app`. No purchase has been
-made. This blocks:
-- A branded email sender (e.g. `quotes@mnjunkremoval.com`) — Resend
-  requires a verified domain you control; there is none to verify yet.
+`PREFERRED_DOMAIN=mnjunkremoval.com`, `DOMAIN_PURCHASE_STATUS=AWAITING_OWNER_PURCHASE`.
+Site remains on `https://aa-dump-removal.vercel.app` until purchase +
+cutover. Full procedure, exact DNS records (already confirmed via
+Vercel's API for this specific domain), and rollback plan are in
+`DOMAIN_CUTOVER.md`. Note: a read-only check shows `mnjunkremoval.com`
+already has parked-registrar nameservers — confirm the owner actually
+holds this registration before purchasing/cutting over. This blocks:
+- A branded email sender (`quotes@mnjunkremoval.com`) — see `RESEND_SETUP.md`.
 - Google Search Console / Bing Webmaster verification tied to a permanent
   host (verifying now against the Vercel URL would need to be redone).
 
+Site origin is centralized in `src/config/site.ts` — cutover only requires
+setting one env var (`NEXT_PUBLIC_SITE_URL`) and redeploying; no component
+hardcodes a domain.
+
 ## Live email delivery — not configured
 
-No `RESEND_API_KEY` has been provided. `/api/quote` correctly returns
-`503 LEAD_DELIVERY_NOT_CONFIGURED` and every submission is still persisted
-to Supabase regardless, so no leads are lost. Once a domain exists and a
-Resend sender is verified, set `RESEND_API_KEY` / `LEAD_FROM_EMAIL` /
-`LEAD_DESTINATION_EMAIL` to activate live email notifications.
+No `RESEND_API_KEY` has been provided (none fabricated). `/api/quote`
+correctly returns `503 LEAD_DELIVERY_NOT_CONFIGURED` and every submission
+is still persisted to Supabase regardless, so no leads are lost. Full
+setup checklist in `RESEND_SETUP.md`. `quotes@mnjunkremoval.com` is the
+intended sending identity only — it is not confirmed as a monitored
+receiving inbox.
+
+## Logo — initial production brand mark, not a custom identity package
+
+`LOGO_STATUS=INITIAL_PRODUCTION_BRAND_MARK`, `CUSTOM_IDENTITY_PACKAGE=NOT_COMPLETED`.
+The current mark/wordmark/full-logo assets are code-generated typography
+(SVG, exact approved text — no AI image generation was used, since that
+integration is still broken). They are clean and production-usable, but
+should not be described to the client as a professionally designed brand
+identity. Swap-ready: every logo slot (`Header`, `Hero`, `Footer`, favicon,
+OG image) accepts a real designed logo with no layout rework once one
+exists.
+
+## Client preview status
+
+```
+CURRENT_PREVIEW_URL=https://aa-dump-removal.vercel.app
+FINAL_DOMAIN=PENDING_PURCHASE
+LIVE_EMAIL_NOTIFICATION=PENDING_RESEND
+LEAD_DATABASE_PERSISTENCE=ACTIVE
+GA4=CLIENT_APPROVED_DEFERRED
+LEGAL_NAME=UNCONFIRMED
+```
+
+Suitable for design/UX approval. **Not** the final production handoff —
+say so explicitly whenever this URL is shared with the client, so it
+isn't mistaken for the finished deliverable.

@@ -7,6 +7,7 @@ import { StickyMobileCta } from "@/components/layout/StickyMobileCta";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { business } from "@/config/business";
 import { defaultOgImage } from "@/lib/og-image";
+import { siteUrl } from "@/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +18,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 const ogImage = defaultOgImage;
 

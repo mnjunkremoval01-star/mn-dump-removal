@@ -1,5 +1,6 @@
 import { business, hasPhone, hasHours, hasEmail } from "@/config/business";
 import { serviceAreaCityNames } from "@/config/service-areas";
+import { siteUrl } from "@/config/site";
 
 /** Converts "9:00 AM" / "9:00 PM" to 24-hour "HH:MM". Returns null if unparseable. */
 function to24Hour(time: string): string | null {
@@ -20,8 +21,6 @@ function to24Hour(time: string): string | null {
  * misrepresent the business.
  */
 export function LocalBusinessJsonLd() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "MovingCompany",
