@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCta } from "@/components/layout/StickyMobileCta";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { business } from "@/config/business";
+import { defaultOgImage } from "@/lib/og-image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,12 +20,7 @@ const geistMono = Geist_Mono({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-const ogImage = {
-  url: "/opengraph-image.jpg",
-  width: 1200,
-  height: 630,
-  alt: `${business.name} — ${business.baseLocation}`,
-};
+const ogImage = defaultOgImage;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

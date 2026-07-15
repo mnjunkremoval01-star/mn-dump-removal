@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { whyChooseUs } from "@/config/content";
 import { business, hasHours, hasPhone, hasEmail } from "@/config/business";
+import { defaultOgImage } from "@/lib/og-image";
 
 const title = "About Us";
 const description =
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/about" },
-  openGraph: { title, description, url: "/about" },
+  openGraph: { title, description, url: "/about", images: [defaultOgImage] },
 };
 
 export default function AboutPage() {

@@ -4,6 +4,7 @@ import { CallButton } from "@/components/ui/CallButton";
 import { PageHero } from "@/components/ui/PageHero";
 import { QuoteForm } from "@/components/quote/QuoteForm";
 import { business } from "@/config/business";
+import { defaultOgImage } from "@/lib/og-image";
 
 const title = "Request a Quote";
 const description =
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/quote" },
-  openGraph: { title, description, url: "/quote" },
+  openGraph: { title, description, url: "/quote", images: [defaultOgImage] },
 };
 
 export default function QuotePage() {

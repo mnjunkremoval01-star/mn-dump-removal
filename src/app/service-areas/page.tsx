@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { serviceAreas } from "@/config/service-areas";
 import { business } from "@/config/business";
+import { defaultOgImage } from "@/lib/og-image";
 
 const title = "Service Areas";
 const description =
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/service-areas" },
-  openGraph: { title, description, url: "/service-areas" },
+  openGraph: { title, description, url: "/service-areas", images: [defaultOgImage] },
 };
 
 export default function ServiceAreasPage() {

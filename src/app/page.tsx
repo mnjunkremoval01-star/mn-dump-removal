@@ -10,6 +10,7 @@ import { ServiceAreasPreview } from "@/components/home/ServiceAreasPreview";
 import { Faq } from "@/components/home/Faq";
 import { FinalCta } from "@/components/home/FinalCta";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
+import { defaultOgImage } from "@/lib/og-image";
 
 const title = "Junk Removal in Burnsville, MN | MN Junk Removal";
 const description =
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical: "/" },
-  openGraph: { title, description, url: "/" },
+  openGraph: { title, description, url: "/", images: [defaultOgImage] },
 };
 
 export default function Home() {

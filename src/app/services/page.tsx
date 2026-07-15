@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { services } from "@/config/services";
 import { business } from "@/config/business";
+import { defaultOgImage } from "@/lib/og-image";
 
 const title = "Junk Removal Services";
 const description =
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/services" },
-  openGraph: { title, description, url: "/services" },
+  openGraph: { title, description, url: "/services", images: [defaultOgImage] },
 };
 
 export default function ServicesPage() {
