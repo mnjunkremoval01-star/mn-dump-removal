@@ -1,12 +1,17 @@
+"use client";
+
 import { business, hasPhone } from "@/config/business";
+import { trackEvent } from "@/lib/analytics";
 
 /** Renders nothing until a real phone number is configured via NEXT_PUBLIC_BUSINESS_PHONE. */
 export function CallButton({
   className = "",
   label = "Call for an Estimate",
+  source = "unknown",
 }: {
   className?: string;
   label?: string;
+  source?: string;
 }) {
   if (!hasPhone) return null;
 
@@ -14,6 +19,7 @@ export function CallButton({
     <a
       href={`tel:${business.phoneHref}`}
       aria-label={`${label}: ${business.phoneDisplay}`}
+      onClick={() => trackEvent("phone_click", { source })}
       className={`inline-flex items-center justify-center gap-2 rounded-full bg-brand-orange px-6 py-3 text-base font-semibold tracking-wide text-white shadow-[0_6px_20px_rgba(255,106,19,0.35)] transition-colors duration-150 hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-orange ${className}`}
     >
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">

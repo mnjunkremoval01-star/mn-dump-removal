@@ -53,7 +53,7 @@ export default function ServicesPage() {
             <p className="max-w-xl text-sm text-white/65">
               Tell us what you need hauled and we&apos;ll let you know if we can help.
             </p>
-            <Button href="/quote">Request a Quote</Button>
+            <Button href="/quote" analyticsEvent="quote_cta_click" analyticsSource="services_page">Request a Quote</Button>
           </div>
         </Container>
       </section>

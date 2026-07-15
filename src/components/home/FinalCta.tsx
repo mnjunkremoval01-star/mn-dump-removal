@@ -20,8 +20,8 @@ export function FinalCta() {
               details and get it hauled away.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <CallButton className="text-lg" />
-              <Button href="/quote" variant="secondary" className="text-lg">
+              <CallButton className="text-lg" source="final_cta" />
+              <Button href="/quote" variant="secondary" className="text-lg" analyticsEvent="quote_cta_click" analyticsSource="final_cta">
                 Request a Quote
               </Button>
             </div>

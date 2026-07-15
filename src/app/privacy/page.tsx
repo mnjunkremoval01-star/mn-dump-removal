@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const effectiveDate = "July 12, 2026";
+const effectiveDate = "July 15, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -53,19 +53,21 @@ export default function PrivacyPage() {
           <div>
             <h2 className="text-lg font-bold text-white">Data retention</h2>
             <p className="mt-2">
-              Submitted quote requests are delivered to our team for the purpose of
-              responding to your inquiry. We retain this information only as long as
-              needed to handle your request and for basic business record-keeping.
+              Submitted quote requests are stored in a secured database and delivered to
+              our team for the purpose of responding to your inquiry. We retain this
+              information only as long as needed to handle your request and for basic
+              business record-keeping.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold text-white">Third-party services</h2>
             <p className="mt-2">
-              Quote request submissions may be delivered using a third-party email
-              delivery provider. That provider processes the information solely to
-              deliver your request to us and does not use it for its own marketing
-              purposes.
+              Quote request submissions are stored using a third-party database
+              provider and may be delivered using a third-party email delivery
+              provider. Those providers process the information solely to store or
+              deliver your request on our behalf and do not use it for their own
+              marketing purposes.
             </p>
           </div>
 

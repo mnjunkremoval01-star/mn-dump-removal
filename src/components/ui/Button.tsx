@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type Variant = "primary" | "secondary" | "outline";
 
@@ -21,6 +24,8 @@ export function Button({
   type,
   onClick,
   disabled,
+  analyticsEvent,
+  analyticsSource,
 }: {
   href?: string;
   variant?: Variant;
@@ -29,19 +34,27 @@ export function Button({
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   disabled?: boolean;
+  /** Fired via trackEvent(analyticsEvent, { source: analyticsSource }) on click. No-ops until GA4 is configured. */
+  analyticsEvent?: string;
+  analyticsSource?: string;
 }) {
   const classes = `${baseClasses} ${variantClasses[variant]} ${className}`;
 
+  function handleClick() {
+    if (analyticsEvent) trackEvent(analyticsEvent, { source: analyticsSource ?? "unknown" });
+    onClick?.();
+  }
+
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={handleClick}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button type={type ?? "button"} className={classes} onClick={onClick} disabled={disabled}>
+    <button type={type ?? "button"} className={classes} onClick={handleClick} disabled={disabled}>
       {children}
     </button>
   );

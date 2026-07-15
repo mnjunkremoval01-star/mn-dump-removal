@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { business, hasPhone, hasEmail, hasHours, hoursSummary } from "@/config/business";
 import { serviceAreaCityNames } from "@/config/service-areas";
@@ -11,7 +12,16 @@ export function Footer() {
       <div className="glass-panel rounded-3xl">
         <Container className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="text-lg font-bold text-white">{business.name}</p>
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/brand/mn-junk-removal-mark.svg"
+                alt={business.name}
+                width={32}
+                height={32}
+                className="h-8 w-8 rounded-md"
+              />
+              <p className="text-lg font-bold text-white">{business.name}</p>
+            </div>
             <p className="mt-1 text-sm italic text-brand-orange">{business.slogan}</p>
             <p className="mt-3 text-sm text-brand-cream/80">{business.tagline}</p>
             <p className="mt-4 text-sm text-brand-cream/80">{business.serviceAreaSummary}</p>
@@ -26,6 +36,7 @@ export function Footer() {
               <li><Link href="/about" className="hover:text-white">About</Link></li>
               <li><Link href="/quote" className="hover:text-white">Request a Quote</Link></li>
               <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-white">Terms of Use</Link></li>
             </ul>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useId, useState } from "react";
+import { FormEvent, useId, useRef, useState } from "react";
 import {
   quoteFormSchema,
   quoteFormDefaultValues,
@@ -11,6 +11,7 @@ import {
 import { services } from "@/config/services";
 import { serviceAreaCityNames } from "@/config/service-areas";
 import { business, hasPhone } from "@/config/business";
+import { trackEvent } from "@/lib/analytics";
 
 type FormValues = QuoteFormState;
 type FieldErrors = Partial<Record<keyof FormValues, string[]>>;
@@ -61,9 +62,16 @@ export function QuoteForm() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle" });
   const datalistId = useId();
+  const hasTrackedStart = useRef(false);
 
   function update<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function trackFormStart() {
+    if (hasTrackedStart.current) return;
+    hasTrackedStart.current = true;
+    trackEvent("quote_start", {});
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -73,6 +81,7 @@ export function QuoteForm() {
     if (!parsed.success) {
       setErrors(parsed.error.flatten().fieldErrors as FieldErrors);
       setSubmitState({ status: "idle" });
+      trackEvent("quote_form_failure", { reason: "client_validation" });
       const firstField = Object.keys(parsed.error.flatten().fieldErrors)[0];
       if (firstField) {
         document.getElementById(firstField)?.focus();
@@ -93,6 +102,7 @@ export function QuoteForm() {
       if (response.ok) {
         setSubmitState({ status: "success" });
         setValues(quoteFormDefaultValues);
+        trackEvent("quote_completed", {});
         return;
       }
 
@@ -103,6 +113,7 @@ export function QuoteForm() {
           status: "error",
           message: "Online quote delivery is being configured. Please check back shortly.",
         });
+        trackEvent("quote_form_failure", { reason: "delivery_not_configured" });
         return;
       }
 
@@ -111,12 +122,14 @@ export function QuoteForm() {
           status: "error",
           message: "You're submitting too quickly. Please wait a minute and try again.",
         });
+        trackEvent("quote_form_failure", { reason: "rate_limited" });
         return;
       }
 
       if (response.status === 400 && body?.issues) {
         setErrors(body.issues as FieldErrors);
         setSubmitState({ status: "idle" });
+        trackEvent("quote_form_failure", { reason: "server_validation" });
         return;
       }
 
@@ -126,6 +139,7 @@ export function QuoteForm() {
           "Something went wrong submitting your request. Please try again in a moment" +
           (hasPhone ? `, or call us at ${business.phoneDisplay}.` : "."),
       });
+      trackEvent("quote_form_failure", { reason: "delivery_failed" });
     } catch {
       setSubmitState({
         status: "error",
@@ -133,6 +147,7 @@ export function QuoteForm() {
           "We couldn't reach the server. Check your connection and try again" +
           (hasPhone ? `, or call us at ${business.phoneDisplay}.` : "."),
       });
+      trackEvent("quote_form_failure", { reason: "network_error" });
     }
   }
 
@@ -154,7 +169,12 @@ export function QuoteForm() {
   const isSubmitting = submitState.status === "submitting";
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="glass-panel space-y-6 rounded-3xl p-6 sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      onFocusCapture={trackFormStart}
+      noValidate
+      className="glass-panel space-y-6 rounded-3xl p-6 sm:p-8"
+    >
       {submitState.status === "error" && (
         <div role="alert" className="rounded-xl border border-orange-400/30 bg-orange-500/10 p-4 text-sm font-medium text-orange-200">
           {submitState.message}

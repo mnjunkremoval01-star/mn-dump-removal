@@ -1,8 +1,7 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { CallButton } from "@/components/ui/CallButton";
-import { VisualPanel } from "@/components/ui/VisualPanel";
-import { TruckIcon } from "@/components/ui/icons";
 import { business } from "@/config/business";
 import { serviceAreaCityNames } from "@/config/service-areas";
 
@@ -21,8 +20,8 @@ export function Hero() {
             {business.tagline}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <CallButton className="text-lg" />
-            <Button href="/quote" variant="outline" className="text-lg">
+            <CallButton className="text-lg" source="hero" />
+            <Button href="/quote" variant="outline" className="text-lg" analyticsEvent="quote_cta_click" analyticsSource="hero">
               Request a Quote
             </Button>
           </div>
@@ -32,12 +31,20 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
-          <VisualPanel
-            alt="Mobile hauling crew loading a dump trailer"
-            icon={<TruckIcon />}
-            label="Mobile crews & local hauling"
-            className="aspect-[4/3] w-full shadow-2xl"
-          />
+          <div className="glass-panel relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl p-8 shadow-2xl">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-[radial-gradient(80%_80%_at_50%_40%,rgba(255,106,19,0.22),transparent_65%)]"
+            />
+            <Image
+              src="/brand/mn-junk-removal-logo.webp"
+              alt={`${business.name} — ${business.baseLocation} — ${business.phoneDisplay ?? ""}`}
+              width={1200}
+              height={900}
+              className="relative h-full w-full object-contain"
+              priority
+            />
+          </div>
         </div>
       </Container>
     </section>

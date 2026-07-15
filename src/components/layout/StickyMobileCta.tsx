@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { business, hasPhone } from "@/config/business";
+import { trackEvent } from "@/lib/analytics";
 
 export function StickyMobileCta() {
   return (
@@ -7,6 +10,7 @@ export function StickyMobileCta() {
       {hasPhone && (
         <a
           href={`tel:${business.phoneHref}`}
+          onClick={() => trackEvent("phone_click", { source: "sticky_mobile_bar" })}
           className="flex-1 rounded-xl bg-brand-orange px-4 py-3 text-center text-sm font-semibold text-white"
         >
           Call Now
@@ -14,6 +18,7 @@ export function StickyMobileCta() {
       )}
       <Link
         href="/quote"
+        onClick={() => trackEvent("quote_cta_click", { source: "sticky_mobile_bar" })}
         className={`rounded-xl border border-white/20 px-4 py-3 text-center text-sm font-semibold text-white ${
           hasPhone ? "flex-1" : "w-full"
         }`}

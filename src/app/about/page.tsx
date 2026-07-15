@@ -84,7 +84,7 @@ export default function AboutPage() {
           )}
 
           <div className="mt-12">
-            <Button href="/quote">Request a Quote</Button>
+            <Button href="/quote" analyticsEvent="quote_cta_click" analyticsSource="about_page">Request a Quote</Button>
           </div>
         </Container>
       </section>

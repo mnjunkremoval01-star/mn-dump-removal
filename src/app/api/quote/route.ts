@@ -3,6 +3,7 @@ import { quoteFormSchema } from "@/lib/quote-schema";
 import { sanitizeSingleLine, sanitizeMultiLine } from "@/lib/sanitize";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { isLeadDeliveryConfigured, deliverLead } from "@/lib/lead-delivery";
+import { persistLead } from "@/lib/lead-storage";
 
 const MAX_BODY_BYTES = 20_000;
 
@@ -58,17 +59,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
-  if (!isLeadDeliveryConfigured()) {
-    logSafe("quote_submission_delivery_not_configured", {
-      serviceType: data.serviceType,
-      customerType: data.customerType,
-    });
-    return NextResponse.json(
-      { ok: false, error: "LEAD_DELIVERY_NOT_CONFIGURED" },
-      { status: 503 }
-    );
-  }
-
   const sanitized = {
     ...data,
     name: sanitizeSingleLine(data.name),
@@ -82,17 +72,40 @@ export async function POST(request: NextRequest) {
     additionalInfo: data.additionalInfo ? sanitizeMultiLine(data.additionalInfo) : undefined,
   };
 
+  // Persist first so a submission is never lost, regardless of whether
+  // email delivery is configured or succeeds. Best-effort: a storage
+  // failure is logged but never changes the response contract below.
+  async function persistSafely(status: "not_configured" | "delivered" | "failed") {
+    const result = await persistLead(sanitized, status);
+    logSafe("quote_submission_persisted", { ok: result.ok, status });
+  }
+
+  if (!isLeadDeliveryConfigured()) {
+    await persistSafely("not_configured");
+    logSafe("quote_submission_delivery_not_configured", {
+      serviceType: data.serviceType,
+      customerType: data.customerType,
+    });
+    return NextResponse.json(
+      { ok: false, error: "LEAD_DELIVERY_NOT_CONFIGURED" },
+      { status: 503 }
+    );
+  }
+
   try {
     const result = await deliverLead(sanitized);
     if (!result.ok) {
+      await persistSafely("failed");
       logSafe("quote_submission_delivery_failed", { status: result.status });
       return NextResponse.json({ ok: false, error: "DELIVERY_FAILED" }, { status: 502 });
     }
   } catch {
+    await persistSafely("failed");
     logSafe("quote_submission_delivery_error", {});
     return NextResponse.json({ ok: false, error: "DELIVERY_FAILED" }, { status: 502 });
   }
 
+  await persistSafely("delivered");
   logSafe("quote_submission_delivered", {
     serviceType: data.serviceType,
     customerType: data.customerType,

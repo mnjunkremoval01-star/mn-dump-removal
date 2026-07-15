@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { CallButton } from "@/components/ui/CallButton";
 import { business } from "@/config/business";
+import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -28,9 +30,16 @@ export function Header() {
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
       <Container className="px-0">
         <div className="glass-panel flex h-16 items-center justify-between rounded-2xl px-4 shadow-[0_8px_30px_rgba(0,0,0,0.35)] sm:h-[4.5rem] sm:px-6">
-          <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight text-white sm:text-xl">
-            <span className="rounded-xl bg-brand-orange px-2.5 py-1 text-brand-black">MN</span>
-            <span>Junk Removal</span>
+          <Link href="/" className="flex items-center gap-2.5 text-lg font-bold tracking-tight text-white sm:text-xl">
+            <Image
+              src="/brand/mn-junk-removal-mark.svg"
+              alt="MN Junk Removal"
+              width={40}
+              height={40}
+              className="h-9 w-9 rounded-lg sm:h-10 sm:w-10"
+              priority
+            />
+            <span>MN Junk Removal</span>
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -46,9 +55,10 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <CallButton className="rounded-full px-4 py-2.5 text-sm" />
+            <CallButton className="rounded-full px-4 py-2.5 text-sm" source="header" />
             <Link
               href="/quote"
+              onClick={() => trackEvent("quote_cta_click", { source: "header" })}
               className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-black transition-colors hover:bg-brand-cream"
             >
               Request a Quote
@@ -93,7 +103,10 @@ export function Header() {
               {business.phoneHref && (
                 <a
                   href={`tel:${business.phoneHref}`}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    trackEvent("phone_click", { source: "header_mobile_menu" });
+                    setMenuOpen(false);
+                  }}
                   className="mt-2 rounded-xl bg-brand-orange px-3 py-3 text-center text-base font-semibold text-white"
                 >
                   Call for an Estimate
@@ -101,7 +114,10 @@ export function Header() {
               )}
               <Link
                 href="/quote"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  trackEvent("quote_cta_click", { source: "header_mobile_menu" });
+                  setMenuOpen(false);
+                }}
                 className="rounded-xl border border-white/20 px-3 py-3 text-center text-base font-semibold text-white"
               >
                 Request a Quote

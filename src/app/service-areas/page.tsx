@@ -44,7 +44,7 @@ export default function ServiceAreasPage() {
               Request a quote with your city or ZIP code and we&apos;ll let you know if we can
               schedule a pickup.
             </p>
-            <Button href="/quote">Request a Quote</Button>
+            <Button href="/quote" analyticsEvent="quote_cta_click" analyticsSource="service_areas_page">Request a Quote</Button>
           </div>
         </Container>
       </section>
