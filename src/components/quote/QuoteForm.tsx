@@ -22,10 +22,10 @@ type SubmitState =
   | { status: "error"; message: string };
 
 const inputClasses =
-  "mt-1.5 block w-full rounded-md border border-black/15 bg-white px-3.5 py-2.5 text-base text-brand-black placeholder:text-black/35 focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/30";
+  "mt-1.5 block w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-base text-white placeholder:text-white/35 focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/30";
 
-const labelClasses = "text-sm font-semibold text-brand-black";
-const errorClasses = "mt-1.5 text-sm font-medium text-red-600";
+const labelClasses = "text-sm font-semibold text-white/85";
+const errorClasses = "mt-1.5 text-sm font-medium text-orange-300";
 
 function Field({
   id,
@@ -141,10 +141,10 @@ export function QuoteForm() {
       <div
         role="status"
         aria-live="polite"
-        className="rounded-lg border border-emerald-200 bg-emerald-50 p-8 text-center"
+        className="glass-panel rounded-3xl border-emerald-400/30 bg-emerald-500/10 p-8 text-center"
       >
-        <p className="text-xl font-bold text-emerald-800">Quote request sent</p>
-        <p className="mt-2 text-sm text-emerald-700">
+        <p className="text-xl font-bold text-emerald-300">Quote request sent</p>
+        <p className="mt-2 text-sm text-emerald-200/80">
           Thanks — we received your request and will follow up to confirm the details.
         </p>
       </div>
@@ -154,9 +154,9 @@ export function QuoteForm() {
   const isSubmitting = submitState.status === "submitting";
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+    <form onSubmit={handleSubmit} noValidate className="glass-panel space-y-6 rounded-3xl p-6 sm:p-8">
       {submitState.status === "error" && (
-        <div role="alert" className="rounded-md border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-700">
+        <div role="alert" className="rounded-xl border border-orange-400/30 bg-orange-500/10 p-4 text-sm font-medium text-orange-200">
           {submitState.message}
         </div>
       )}
@@ -224,7 +224,7 @@ export function QuoteForm() {
         </Field>
       </div>
 
-      <p className="text-xs text-brand-charcoal-light">
+      <p className="text-xs text-white/50">
         Provide at least a phone number or an email address so we can reach you.
       </p>
 
@@ -364,7 +364,7 @@ export function QuoteForm() {
       </div>
 
       <div>
-        <label className="flex items-start gap-3 text-sm text-brand-charcoal-light">
+        <label className="flex items-start gap-3 text-sm text-white/65">
           <input
             id="consent"
             name="consent"
@@ -373,7 +373,7 @@ export function QuoteForm() {
             aria-required="true"
             aria-invalid={Boolean(errors.consent)}
             aria-describedby={errors.consent ? "consent-error" : undefined}
-            className="mt-1 h-4 w-4 rounded border-black/30 text-brand-orange focus:ring-brand-orange"
+            className="mt-1 h-4 w-4 rounded border-white/25 bg-white/5 text-brand-orange focus:ring-brand-orange"
             checked={values.consent}
             onChange={(e) => update("consent", e.target.checked)}
           />
@@ -395,7 +395,7 @@ export function QuoteForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-orange px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-orange disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-orange px-6 py-3.5 text-base font-semibold text-white shadow-[0_6px_20px_rgba(255,106,19,0.35)] transition-colors hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-orange disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {isSubmitting ? (
           <>

@@ -17,7 +17,7 @@ export function ServiceAreasPreview() {
           {serviceAreas.map((area) => (
             <li
               key={area.city}
-              className="rounded-md border border-black/10 px-4 py-3 text-center text-sm font-semibold text-brand-charcoal"
+              className="glass-panel rounded-xl px-4 py-3 text-center text-sm font-semibold text-white/85"
             >
               {area.city}, {area.state}
             </li>

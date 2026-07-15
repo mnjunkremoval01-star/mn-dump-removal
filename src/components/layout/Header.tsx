@@ -25,89 +25,91 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-brand-charcoal/10 bg-white/95 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between sm:h-20">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight text-brand-black sm:text-xl">
-          <span className="rounded bg-brand-black px-2 py-1 text-brand-orange">AA</span>
-          <span>Dump Removal</span>
-        </Link>
-
-        <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-semibold text-brand-charcoal hover:text-brand-orange"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <CallButton className="px-4 py-2 text-sm" />
-          <Link
-            href="/quote"
-            className="inline-flex items-center justify-center rounded-md bg-brand-black px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-charcoal"
-          >
-            Get a Free Quote
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <Container className="px-0">
+        <div className="glass-panel flex h-16 items-center justify-between rounded-2xl px-4 shadow-[0_8px_30px_rgba(0,0,0,0.35)] sm:h-[4.5rem] sm:px-6">
+          <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight text-white sm:text-xl">
+            <span className="rounded-xl bg-brand-orange px-2.5 py-1 text-brand-black">AA</span>
+            <span>Dump Removal</span>
           </Link>
-        </div>
 
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-brand-black lg:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-7 w-7 fill-none stroke-current stroke-2">
-            {menuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
-            )}
-          </svg>
-        </button>
-      </Container>
-
-      {menuOpen && (
-        <nav
-          id="mobile-nav"
-          aria-label="Mobile"
-          className="border-t border-brand-charcoal/10 bg-white lg:hidden"
-        >
-          <Container className="flex flex-col gap-1 py-4">
+          <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="rounded-md px-3 py-3 text-base font-semibold text-brand-charcoal hover:bg-brand-cream"
+                className="text-sm font-semibold text-white/75 transition-colors hover:text-brand-orange"
               >
                 {link.label}
               </Link>
             ))}
+          </nav>
+
+          <div className="hidden items-center gap-3 lg:flex">
+            <CallButton className="rounded-full px-4 py-2.5 text-sm" />
             <Link
               href="/quote"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-md bg-brand-orange px-3 py-3 text-center text-base font-semibold text-white"
+              className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-black transition-colors hover:bg-brand-cream"
             >
               Get a Free Quote
             </Link>
-            {business.phoneHref && (
-              <a
-                href={`tel:${business.phoneHref}`}
+          </div>
+
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-full p-2 text-white lg:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-7 w-7 fill-none stroke-current stroke-2">
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {menuOpen && (
+          <nav
+            id="mobile-nav"
+            aria-label="Mobile"
+            className="glass-panel mt-2 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.35)] lg:hidden"
+          >
+            <div className="flex flex-col gap-1 p-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl px-3 py-3 text-base font-semibold text-white/85 hover:bg-white/10"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link
+                href="/quote"
                 onClick={() => setMenuOpen(false)}
-                className="rounded-md border-2 border-brand-black px-3 py-3 text-center text-base font-semibold text-brand-black"
+                className="mt-2 rounded-xl bg-brand-orange px-3 py-3 text-center text-base font-semibold text-white"
               >
-                Call {business.phoneDisplay}
-              </a>
-            )}
-          </Container>
-        </nav>
-      )}
+                Get a Free Quote
+              </Link>
+              {business.phoneHref && (
+                <a
+                  href={`tel:${business.phoneHref}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl border border-white/20 px-3 py-3 text-center text-base font-semibold text-white"
+                >
+                  Call {business.phoneDisplay}
+                </a>
+              )}
+            </div>
+          </nav>
+        )}
+      </Container>
     </header>
   );
 }

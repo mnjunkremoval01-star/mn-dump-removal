@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/ui/PageHero";
 import { whyChooseUs } from "@/config/content";
 import { business, hasHours, hasPhone, hasEmail } from "@/config/business";
 
@@ -18,19 +19,15 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-brand-black py-16 text-white sm:py-20">
-        <Container>
-          <p className="text-sm font-bold uppercase tracking-widest text-brand-orange">About Us</p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Local, mobile junk removal built for {business.baseLocation}
-          </h1>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow="About Us"
+        title={`Local, mobile junk removal built for ${business.baseLocation}`}
+      />
 
       <section className="py-16 sm:py-24">
         <Container className="max-w-3xl">
-          <h2 className="text-2xl font-bold text-brand-black">What we do</h2>
-          <p className="mt-4 text-base text-brand-charcoal-light">
+          <h2 className="text-2xl font-bold text-white">What we do</h2>
+          <p className="mt-4 text-base text-white/65">
             {business.name} is a mobile junk removal and dump hauling service serving{" "}
             {business.baseLocation} and the surrounding communities. We help homeowners,
             landlords, and businesses clear out furniture, appliances, yard debris,
@@ -38,8 +35,8 @@ export default function AboutPage() {
             trailer or making a dump run yourself.
           </p>
 
-          <h2 className="mt-10 text-2xl font-bold text-brand-black">How we work</h2>
-          <p className="mt-4 text-base text-brand-charcoal-light">
+          <h2 className="mt-10 text-2xl font-bold text-white">How we work</h2>
+          <p className="mt-4 text-base text-white/65">
             Every job starts with a quote request. We follow up to confirm the scope of
             the job, the pickup location, and a date that works for your schedule. On
             pickup day, our crew handles the loading, hauling, and disposal so the space
@@ -48,17 +45,17 @@ export default function AboutPage() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {whyChooseUs.map((item) => (
-              <div key={item.title} className="rounded-lg border border-black/10 p-6">
-                <p className="font-semibold text-brand-black">{item.title}</p>
-                <p className="mt-2 text-sm text-brand-charcoal-light">{item.description}</p>
+              <div key={item.title} className="glass-panel rounded-2xl p-6">
+                <p className="font-semibold text-white">{item.title}</p>
+                <p className="mt-2 text-sm text-white/65">{item.description}</p>
               </div>
             ))}
           </div>
 
           {(hasHours || hasPhone || hasEmail) && (
-            <div className="mt-12 rounded-lg bg-brand-cream p-6">
-              <h2 className="text-lg font-bold text-brand-black">Contact &amp; hours</h2>
-              <ul className="mt-3 space-y-1 text-sm text-brand-charcoal-light">
+            <div className="glass-panel mt-12 rounded-2xl p-6">
+              <h2 className="text-lg font-bold text-white">Contact &amp; hours</h2>
+              <ul className="mt-3 space-y-1 text-sm text-white/65">
                 {hasPhone && (
                   <li>
                     Phone:{" "}

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
+import { TrustBar } from "@/components/home/TrustBar";
 import { ServicesOverview } from "@/components/home/ServicesOverview";
+import { Gallery } from "@/components/home/Gallery";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { ItemsGuide } from "@/components/home/ItemsGuide";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
@@ -21,7 +23,9 @@ export default function Home() {
     <>
       <LocalBusinessJsonLd />
       <Hero />
+      <TrustBar />
       <ServicesOverview />
+      <Gallery />
       <ProcessSteps />
       <ItemsGuide />
       <WhyChooseUs />

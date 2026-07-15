@@ -20,12 +20,12 @@ export function ServicesOverview() {
             <Link
               key={service.slug}
               href={`/services#${service.slug}`}
-              className="group rounded-lg border border-black/10 p-5 transition-colors hover:border-brand-orange hover:bg-brand-cream"
+              className="glass-panel group rounded-2xl p-5 transition-colors hover:border-brand-orange/40"
             >
-              <p className="font-semibold text-brand-black group-hover:text-brand-orange">
+              <p className="font-semibold text-white group-hover:text-brand-orange">
                 {service.name}
               </p>
-              <p className="mt-2 text-sm text-brand-charcoal-light">{service.shortDescription}</p>
+              <p className="mt-2 text-sm text-white/60">{service.shortDescription}</p>
             </Link>
           ))}
         </div>

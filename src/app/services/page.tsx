@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/ui/PageHero";
 import { services } from "@/config/services";
 import { business } from "@/config/business";
 
@@ -18,33 +19,26 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-brand-black py-16 text-white sm:py-20">
-        <Container>
-          <p className="text-sm font-bold uppercase tracking-widest text-brand-orange">Services</p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Junk removal services for {business.baseLocation}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
-            We handle residential and commercial hauling jobs of every size. Browse the
-            services below, then request a quote with the details of your job.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow="Services"
+        title={`Junk removal services for ${business.baseLocation}`}
+        description="We handle residential and commercial hauling jobs of every size. Browse the services below, then request a quote with the details of your job."
+      />
 
       <section className="py-16 sm:py-24">
         <Container>
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             {services.map((service) => (
               <div
                 key={service.slug}
                 id={service.slug}
-                className="scroll-mt-24 rounded-lg border border-black/10 p-6"
+                className="glass-panel scroll-mt-24 rounded-2xl p-6"
               >
-                <h2 className="text-xl font-bold text-brand-black">{service.name}</h2>
-                <p className="mt-2 text-sm text-brand-charcoal-light">{service.description}</p>
+                <h2 className="text-xl font-bold text-white">{service.name}</h2>
+                <p className="mt-2 text-sm text-white/60">{service.description}</p>
                 <ul className="mt-4 space-y-2">
                   {service.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2 text-sm text-brand-charcoal-light">
+                    <li key={bullet} className="flex items-start gap-2 text-sm text-white/60">
                       <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-orange" />
                       {bullet}
                     </li>
@@ -54,9 +48,9 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          <div className="mt-16 flex flex-col items-center gap-4 rounded-lg bg-brand-cream p-10 text-center">
-            <h2 className="text-2xl font-bold text-brand-black">Don&apos;t see your exact job listed?</h2>
-            <p className="max-w-xl text-sm text-brand-charcoal-light">
+          <div className="glass-panel mt-16 flex flex-col items-center gap-4 rounded-3xl p-10 text-center">
+            <h2 className="text-2xl font-bold text-white">Don&apos;t see your exact job listed?</h2>
+            <p className="max-w-xl text-sm text-white/65">
               Tell us what you need hauled and we&apos;ll let you know if we can help.
             </p>
             <Button href="/quote">Get a Free Quote</Button>

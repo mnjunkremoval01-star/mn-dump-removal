@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { CallButton } from "@/components/ui/CallButton";
+import { PageHero } from "@/components/ui/PageHero";
 import { QuoteForm } from "@/components/quote/QuoteForm";
 import { business } from "@/config/business";
 
@@ -18,21 +19,15 @@ export const metadata: Metadata = {
 export default function QuotePage() {
   return (
     <>
-      <section className="bg-brand-black py-16 text-white sm:py-20">
-        <Container>
-          <p className="text-sm font-bold uppercase tracking-widest text-brand-orange">Request a Quote</p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Tell us what needs to go
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
-            Fill out the form below with as much detail as you can. We&apos;ll follow up
-            to confirm scheduling for {business.baseLocation} and the surrounding area.
-          </p>
-          <div className="mt-6">
-            <CallButton />
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow="Request a Quote"
+        title="Tell us what needs to go"
+        description={`Fill out the form below with as much detail as you can. We'll follow up to confirm scheduling for ${business.baseLocation} and the surrounding area.`}
+      >
+        <div className="mt-6">
+          <CallButton />
+        </div>
+      </PageHero>
 
       <section className="py-16 sm:py-24">
         <Container className="max-w-2xl">

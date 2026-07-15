@@ -9,11 +9,11 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-brand-cream py-16 sm:py-24">
+    <section className="py-16 sm:py-24">
       <Container>
         <SectionHeading eyebrow="Questions" title="Frequently asked questions" align="center" />
 
-        <div className="mx-auto mt-10 max-w-3xl divide-y divide-black/10 rounded-lg border border-black/10 bg-white">
+        <div className="glass-panel mx-auto mt-10 max-w-3xl divide-y divide-white/10 rounded-2xl">
           {faqItems.map((item, index) => {
             const isOpen = openIndex === index;
             const panelId = `faq-panel-${index}`;
@@ -28,7 +28,7 @@ export function Faq() {
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-brand-black"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-white"
                   >
                     {item.question}
                     <svg
@@ -41,7 +41,7 @@ export function Faq() {
                   </button>
                 </h3>
                 {isOpen && (
-                  <div id={panelId} role="region" aria-labelledby={buttonId} className="px-5 pb-5 text-sm text-brand-charcoal-light">
+                  <div id={panelId} role="region" aria-labelledby={buttonId} className="px-5 pb-5 text-sm text-white/65">
                     {item.answer}
                   </div>
                 )}

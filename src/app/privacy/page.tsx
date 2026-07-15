@@ -15,14 +15,14 @@ export default function PrivacyPage() {
   return (
     <section className="py-16 sm:py-24">
       <Container className="max-w-3xl">
-        <h1 className="text-3xl font-extrabold tracking-tight text-brand-black sm:text-4xl">
+        <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           Privacy Policy
         </h1>
-        <p className="mt-2 text-sm text-brand-charcoal-light">Effective {effectiveDate}</p>
+        <p className="mt-2 text-sm text-white/55">Effective {effectiveDate}</p>
 
-        <div className="mt-8 space-y-8 text-sm leading-relaxed text-brand-charcoal-light">
+        <div className="glass-panel mt-8 space-y-8 rounded-3xl p-6 text-sm leading-relaxed text-white/65 sm:p-8">
           <div>
-            <h2 className="text-lg font-bold text-brand-black">Information we collect</h2>
+            <h2 className="text-lg font-bold text-white">Information we collect</h2>
             <p className="mt-2">
               When you submit the quote request form on this website, we collect the
               information you provide, which may include your name, phone number, email
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           </div>
 
           <div>
-            <h2 className="text-lg font-bold text-brand-black">How we use it</h2>
+            <h2 className="text-lg font-bold text-white">How we use it</h2>
             <p className="mt-2">
               We use the information you submit only to respond to your quote request,
               schedule service, and communicate with you about your job. We do not sell
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
           </div>
 
           <div>
-            <h2 className="text-lg font-bold text-brand-black">Anti-spam and rate limiting</h2>
+            <h2 className="text-lg font-bold text-white">Anti-spam and rate limiting</h2>
             <p className="mt-2">
               To reduce automated spam submissions, our quote form uses a hidden
               honeypot field and a temporary, in-memory submission rate limit tied to
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           </div>
 
           <div>
-            <h2 className="text-lg font-bold text-brand-black">Data retention</h2>
+            <h2 className="text-lg font-bold text-white">Data retention</h2>
             <p className="mt-2">
               Submitted quote requests are delivered to our team for the purpose of
               responding to your inquiry. We retain this information only as long as
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
           </div>
 
           <div>
-            <h2 className="text-lg font-bold text-brand-black">Third-party services</h2>
+            <h2 className="text-lg font-bold text-white">Third-party services</h2>
             <p className="mt-2">
               Quote request submissions may be delivered using a third-party email
               delivery provider. That provider processes the information solely to
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
 
           {hasEmail && business.email && (
             <div>
-              <h2 className="text-lg font-bold text-brand-black">Contact us</h2>
+              <h2 className="text-lg font-bold text-white">Contact us</h2>
               <p className="mt-2">
                 Questions about this policy or your information can be sent to{" "}
                 <a href={`mailto:${business.email}`} className="font-semibold text-brand-orange hover:underline">
