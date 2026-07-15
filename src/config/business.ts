@@ -14,7 +14,10 @@ export interface BusinessHours {
 export interface BusinessConfig {
   name: string;
   shortName: string;
+  /** Registered legal entity name, if different from the public brand. Internal use only — never render on marketing pages. Null until confirmed by the client. */
+  legalName: string | null;
   tagline: string;
+  slogan: string;
   baseLocation: string;
   serviceAreaSummary: string;
   /** Display-formatted phone, e.g. "(952) 555-0100". Null until confirmed. */
@@ -61,9 +64,12 @@ const dailyHours: BusinessHours[] = [
 ];
 
 export const business: BusinessConfig = {
-  name: "AA Dump Removal",
-  shortName: "AA Dump Removal",
-  tagline: "Mobile junk removal and dump hauling serving Burnsville, MN",
+  name: "MN Junk Removal",
+  shortName: "MN Junk Removal",
+  legalName: null,
+  tagline:
+    "MN Junk Removal clears unwanted furniture, appliances, debris, and household or commercial junk throughout Burnsville and nearby communities. We handle the loading, hauling, and cleanup so you can reclaim your space without the hassle.",
+  slogan: "Clearing Minnesota, One Load at a Time.",
   baseLocation: "Burnsville, Minnesota",
   serviceAreaSummary: "Serving Burnsville and surrounding communities",
   phoneDisplay: formatPhoneDisplay(rawPhone),

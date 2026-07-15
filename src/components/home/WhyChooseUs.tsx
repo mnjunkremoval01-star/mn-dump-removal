@@ -1,12 +1,13 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { whyChooseUs } from "@/config/content";
+import { business } from "@/config/business";
 
 export function WhyChooseUs() {
   return (
     <section className="py-16 text-white sm:py-24">
       <Container>
-        <SectionHeading eyebrow="Why AA Dump Removal" title="Built for a straightforward hauling experience" />
+        <SectionHeading eyebrow={`Why ${business.name}`} title="Built for a straightforward hauling experience" />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {whyChooseUs.map((item) => (

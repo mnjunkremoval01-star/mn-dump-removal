@@ -7,7 +7,7 @@ import { business } from "@/config/business";
 
 const title = "Junk Removal Services";
 const description =
-  "Residential and commercial junk removal services from AA Dump Removal, including furniture, appliance, and construction debris hauling in Burnsville, MN.";
+  "Residential and commercial junk removal services from MN Junk Removal, including furniture, appliance, and construction debris hauling in Burnsville, MN.";
 
 export const metadata: Metadata = {
   title,
@@ -53,7 +53,7 @@ export default function ServicesPage() {
             <p className="max-w-xl text-sm text-white/65">
               Tell us what you need hauled and we&apos;ll let you know if we can help.
             </p>
-            <Button href="/quote">Get a Free Quote</Button>
+            <Button href="/quote">Request a Quote</Button>
           </div>
         </Container>
       </section>

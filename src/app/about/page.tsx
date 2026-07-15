@@ -7,7 +7,7 @@ import { business, hasHours, hasPhone, hasEmail } from "@/config/business";
 
 const title = "About Us";
 const description =
-  "AA Dump Removal is a mobile junk removal and dump hauling service based in Burnsville, Minnesota, built around a straightforward quote-to-pickup process.";
+  "MN Junk Removal is a mobile junk removal and dump hauling service based in Burnsville, Minnesota, built around a straightforward quote-to-pickup process.";
 
 export const metadata: Metadata = {
   title,
@@ -84,7 +84,7 @@ export default function AboutPage() {
           )}
 
           <div className="mt-12">
-            <Button href="/quote">Get a Free Quote</Button>
+            <Button href="/quote">Request a Quote</Button>
           </div>
         </Container>
       </section>

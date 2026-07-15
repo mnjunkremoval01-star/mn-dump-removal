@@ -15,18 +15,16 @@ export function Hero() {
             {business.baseLocation} &middot; Mobile Junk Removal
           </p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Junk gone. Space back. No hassle.
+            Fast, Reliable Junk Removal in Burnsville, Minnesota
           </h1>
           <p className="mt-6 text-lg text-white/75 sm:text-xl">
-            AA Dump Removal hauls away furniture, appliances, and debris for homes and
-            businesses across Burnsville and the surrounding communities. Request a
-            quote and we&apos;ll handle the loading, hauling, and disposal.
+            {business.tagline}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="/quote" variant="primary" className="text-lg">
-              Get a Free Quote
-            </Button>
             <CallButton className="text-lg" />
+            <Button href="/quote" variant="outline" className="text-lg">
+              Request a Quote
+            </Button>
           </div>
           <p className="mt-6 text-sm text-white/55">
             Serving {serviceAreaCityNames.slice(0, 4).join(", ")}, and more.

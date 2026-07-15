@@ -20,10 +20,10 @@ export function FinalCta() {
               details and get it hauled away.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href="/quote" variant="secondary" className="text-lg">
-                Get a Free Quote
-              </Button>
               <CallButton className="text-lg" />
+              <Button href="/quote" variant="secondary" className="text-lg">
+                Request a Quote
+              </Button>
             </div>
           </div>
         </div>

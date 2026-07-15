@@ -21,14 +21,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${business.name} | Junk Removal & Dump Hauling in Burnsville, MN`,
+    default: `${business.name} | Junk Removal in Burnsville, MN`,
     template: `%s | ${business.name}`,
   },
   description: business.tagline,
   openGraph: {
     type: "website",
     siteName: business.name,
-    title: `${business.name} | Junk Removal & Dump Hauling in Burnsville, MN`,
+    title: `${business.name} | Junk Removal in Burnsville, MN`,
     description: business.tagline,
   },
 };

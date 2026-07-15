@@ -1,4 +1,5 @@
 import type { QuoteFormValues } from "./quote-schema";
+import { business } from "@/config/business";
 
 export function isLeadDeliveryConfigured(): boolean {
   return Boolean(
@@ -23,7 +24,7 @@ export async function deliverLead(
   const from = process.env.LEAD_FROM_EMAIL as string;
 
   const lines = [
-    `New quote request — AA Dump Removal`,
+    `New quote request — ${business.name}`,
     ``,
     `Name: ${data.name}`,
     `Phone: ${data.phone ?? "(not provided)"}`,

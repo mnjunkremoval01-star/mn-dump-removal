@@ -7,7 +7,7 @@ import { business } from "@/config/business";
 
 const title = "Service Areas";
 const description =
-  "AA Dump Removal serves Burnsville, Apple Valley, Eagan, Lakeville, Savage, Prior Lake, Bloomington, Rosemount, and surrounding Minnesota communities.";
+  "MN Junk Removal serves Burnsville, Apple Valley, Eagan, Lakeville, Savage, Prior Lake, Bloomington, Rosemount, and surrounding Minnesota communities.";
 
 export const metadata: Metadata = {
   title,
@@ -44,7 +44,7 @@ export default function ServiceAreasPage() {
               Request a quote with your city or ZIP code and we&apos;ll let you know if we can
               schedule a pickup.
             </p>
-            <Button href="/quote">Get a Free Quote</Button>
+            <Button href="/quote">Request a Quote</Button>
           </div>
         </Container>
       </section>

@@ -29,8 +29,8 @@ export function Header() {
       <Container className="px-0">
         <div className="glass-panel flex h-16 items-center justify-between rounded-2xl px-4 shadow-[0_8px_30px_rgba(0,0,0,0.35)] sm:h-[4.5rem] sm:px-6">
           <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight text-white sm:text-xl">
-            <span className="rounded-xl bg-brand-orange px-2.5 py-1 text-brand-black">AA</span>
-            <span>Dump Removal</span>
+            <span className="rounded-xl bg-brand-orange px-2.5 py-1 text-brand-black">MN</span>
+            <span>Junk Removal</span>
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -51,7 +51,7 @@ export function Header() {
               href="/quote"
               className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-black transition-colors hover:bg-brand-cream"
             >
-              Get a Free Quote
+              Request a Quote
             </Link>
           </div>
 
@@ -90,22 +90,22 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/quote"
-                onClick={() => setMenuOpen(false)}
-                className="mt-2 rounded-xl bg-brand-orange px-3 py-3 text-center text-base font-semibold text-white"
-              >
-                Get a Free Quote
-              </Link>
               {business.phoneHref && (
                 <a
                   href={`tel:${business.phoneHref}`}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-xl border border-white/20 px-3 py-3 text-center text-base font-semibold text-white"
+                  className="mt-2 rounded-xl bg-brand-orange px-3 py-3 text-center text-base font-semibold text-white"
                 >
-                  Call {business.phoneDisplay}
+                  Call for an Estimate
                 </a>
               )}
+              <Link
+                href="/quote"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl border border-white/20 px-3 py-3 text-center text-base font-semibold text-white"
+              >
+                Request a Quote
+              </Link>
             </div>
           </nav>
         )}

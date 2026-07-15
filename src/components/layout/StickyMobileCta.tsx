@@ -7,18 +7,18 @@ export function StickyMobileCta() {
       {hasPhone && (
         <a
           href={`tel:${business.phoneHref}`}
-          className="flex-1 rounded-xl border border-white/20 px-4 py-3 text-center text-sm font-semibold text-white"
+          className="flex-1 rounded-xl bg-brand-orange px-4 py-3 text-center text-sm font-semibold text-white"
         >
           Call Now
         </a>
       )}
       <Link
         href="/quote"
-        className={`rounded-xl bg-brand-orange px-4 py-3 text-center text-sm font-semibold text-white ${
+        className={`rounded-xl border border-white/20 px-4 py-3 text-center text-sm font-semibold text-white ${
           hasPhone ? "flex-1" : "w-full"
         }`}
       >
-        Get a Free Quote
+        Request a Quote
       </Link>
     </div>
   );

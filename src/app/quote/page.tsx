@@ -5,9 +5,9 @@ import { PageHero } from "@/components/ui/PageHero";
 import { QuoteForm } from "@/components/quote/QuoteForm";
 import { business } from "@/config/business";
 
-const title = "Request a Free Quote";
+const title = "Request a Quote";
 const description =
-  "Request a free junk removal quote from AA Dump Removal. Tell us what needs to go and we'll follow up to confirm scheduling.";
+  "Request a junk removal quote from MN Junk Removal. Tell us what needs to go and we'll follow up to confirm scheduling.";
 
 export const metadata: Metadata = {
   title,
